@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>投资组合深度扫描 | 2026-04-14</title>
+<style>
+:root{--bg:#0a0e17;--card:#111827;--accent:#3b82f6;--green:#10b981;--red:#ef4444;--amber:#f59e0b;--purple:#8b5cf6;--cyan:#06b6d4;--txt:#e5e7eb;--txt2:#9ca3af;--border:#1f2937;--glow:0 0 20px rgba(59,130,246,.15)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hiragino Sans GB',sans-serif;background:var(--bg);color:var(--txt);line-height:1.6;padding:12px;max-width:960px;margin:0 auto}
+.hdr{text-align:center;padding:28px 0 18px;border-bottom:1px solid var(--border)}
+.hdr h1{font-size:1.5em;background:linear-gradient(90deg,var(--cyan),var(--accent),var(--purple));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px}
+.hdr .sub{color:var(--txt2);font-size:.82em}
+.alert{background:linear-gradient(135deg,#7f1d1d,#991b1b);border:1px solid #dc2626;border-radius:10px;padding:14px 18px;margin:16px 0;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 5px #dc262640}50%{box-shadow:0 0 20px #dc262680}}
+.alert h3{color:#fca5a5;font-size:1em;margin-bottom:6px}
+.alert p{color:#fecaca;font-size:.82em}
+.section{margin:20px 0}
+.section h2{font-size:1.1em;color:var(--cyan);border-left:3px solid var(--cyan);padding-left:10px;margin-bottom:12px}
+.section h3{font-size:.95em;color:var(--accent);margin:12px 0 8px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;margin:10px 0;box-shadow:var(--glow)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+@media(max-width:600px){.grid2,.grid3{grid-template-columns:1fr}}
+.kpi{text-align:center;padding:12px 8px}
+.kpi .val{font-size:1.5em;font-weight:700}
+.kpi .lbl{font-size:.72em;color:var(--txt2);margin-top:2px}
+.up{color:var(--green)}.dn{color:var(--red)}.nt{color:var(--amber)}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.7em;font-weight:600;margin:2px}
+.tag-red{background:#7f1d1d;color:#fca5a5}.tag-green{background:#064e3b;color:#6ee7b7}.tag-amber{background:#78350f;color:#fcd34d}.tag-blue{background:#1e3a5f;color:#93c5fd}.tag-purple{background:#3b0764;color:#c4b5fd}
+.tbl{width:100%;border-collapse:collapse;font-size:.78em;margin:8px 0}
+.tbl th{background:#1a2332;color:var(--cyan);padding:8px 6px;text-align:left;border-bottom:1px solid var(--border);font-weight:600;white-space:nowrap}
+.tbl td{padding:7px 6px;border-bottom:1px solid #1a1a2e;vertical-align:middle}
+.tbl tr:hover{background:#1a2332}
+.meter{position:relative;height:22px;background:#1f2937;border-radius:11px;overflow:hidden;margin:8px 0}
+.meter-fill{height:100%;border-radius:11px}
+.meter-label{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:.7em;font-weight:700;color:white;text-shadow:0 1px 3px rgba(0,0,0,.6)}
+.exec{border-left:3px solid;padding:10px 14px;margin:8px 0;border-radius:0 8px 8px 0;background:var(--card)}
+.exec-p0{border-color:var(--red)}.exec-p1{border-color:var(--amber)}.exec-p2{border-color:var(--accent)}
+.exec .pri{font-size:.68em;font-weight:700;margin-bottom:4px}
+.exec .pri.p0{color:var(--red)}.exec .pri.p1{color:var(--amber)}.exec .pri.p2{color:var(--accent)}
+.footer{text-align:center;color:var(--txt2);font-size:.7em;padding:20px 0;border-top:1px solid var(--border);margin-top:24px}
+canvas{max-width:100%;margin:8px 0}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<div class="hdr">
+<h1>⚡ 每日量化深度扫描</h1>
+<div class="sub">2026年4月14日 周二 | 盘中实时（上午时段） | Futu OpenD + WebSearch</div>
+<div class="sub" style="margin-top:4px;color:var(--cyan)">📄 持仓源：雪球持仓组合 10.csv | 分析框架：touziModle Phase1→2→3</div>
+</div>
+
+<!-- ===== GEOPOLITICAL ALERT ===== -->
+<div class="alert">
+<h3>🚨 地缘风险持续 | 霍尔木兹封锁已生效</h3>
+<p><b>最新进展</b>：美军4/13 22:00(北京时间)正式启动封锁，拦截进出伊朗港口船只。特朗普称将"消灭靠近封锁区的伊朗快艇"。<br>
+<b>油价</b>：WTI收$98/桶(+1.5%)，盘中一度冲$105。OPEC 3月减产788万桶/日创历史极值。分析师预测$110-125/桶。<br>
+<b>缓和信号</b>：巴基斯坦称新一轮美伊谈判可能"很快开始"；伊朗称封锁是"虚张声势"。<br>
+<b>港股反应</b>：今日恒指高开1.05%报25929，恒科高开1.37%。<span class="up">科技股领涨，金山+5.5%，赛力斯+0.1%</span>。但理想-1.8%、蔚来-2.3%出现分化。</p>
+</div>
+
+<!-- ===== SECTION 1: MARGIN & RISK ===== -->
+<div class="section">
+<h2>▍1. 账户流动性与富途风控警报 (Margin & Risk)</h2>
+
+<div class="card">
+<h3>📊 富途账户实时（盘中快照 10:20）</h3>
+<div class="grid3">
+<div class="kpi"><div class="val" style="color:var(--cyan)">341.96万</div><div class="lbl">总资产 (HKD)</div></div>
+<div class="kpi"><div class="val" style="color:var(--amber)">478.46万</div><div class="lbl">证券市值</div></div>
+<div class="kpi"><div class="val dn">-136.82万</div><div class="lbl">融资负债</div></div>
+</div>
+<div class="grid3">
+<div class="kpi"><div class="val nt">1.40x</div><div class="lbl">杠杆率</div></div>
+<div class="kpi"><div class="val" style="color:var(--red)">LEVEL5</div><div class="lbl">风控等级</div></div>
+<div class="kpi"><div class="val" style="color:var(--amber)">12.74万</div><div class="lbl">购买力</div></div>
+</div>
+</div>
+
+<div class="card">
+<h3>🔥 保证金压力测试 — "造车新势力板块暴跌8%"场景</h3>
+<table class="tbl">
+<tr><th>指标</th><th>当前值</th><th>暴跌8%后</th><th>状态</th></tr>
+<tr><td>总资产</td><td>341.96万</td><td><b>303.69万</b></td><td>-38.27万</td></tr>
+<tr><td>维持保证金</td><td colspan="2" style="text-align:center">304.38万</td><td>—</td></tr>
+<tr><td><b>缓冲(总资产-维持)</b></td><td class="nt"><b>37.58万 (7.86%)</b></td><td class="dn"><b>-0.69万 (-0.14%)</b></td><td><span class="tag tag-red">触发Margin Call!</span></td></tr>
+</table>
+<div class="meter">
+<div class="meter-fill" style="width:89%;background:linear-gradient(90deg,var(--red) 0%,var(--amber) 50%,var(--green) 100%)"></div>
+<div class="meter-label">安全度 89% | 缓冲 ≈ 7.9% → 板块跌8%即爆仓</div>
+</div>
+<p style="font-size:.8em;color:var(--txt2);margin-top:8px">
+<b>结论</b>：当前总资产341.96万 vs 维持保证金304.38万，缓冲仅<span class="dn">37.58万（7.86%）</span>。<br>
+<b>若明日造车新势力整体下跌8%，组合市值蒸发约38.27万，净值跌至303.69万，<span class="dn">低于维持保证金304.38万 → 触发追缴/强平</span></b>。<br>
+<b>融资成本</b>：年化≈6.5%-7.0%（含利息已计137万），月利息支出约<span class="dn">HK$7,400</span>。<br>
+<b>流动性建议</b>：为降杠杆，应优先清仓"流动性好、波动率高"的<b>碧桂园(02007)</b>、<b>北大资源(00618)</b>、<b>北京汽车(01958)</b>等劣质尾部资产。可回收约HK$70,000，将缓冲提升至≈9.3%。
+</p>
+</div>
+
+<div class="card">
+<h3>📋 CSV持仓全口径汇总（雪球持仓组合10）</h3>
+<div class="grid2">
+<div>
+<table class="tbl">
+<tr><td>全市场总市值</td><td><b>HK$ 6,134,213</b></td></tr>
+<tr><td>全市场总资产</td><td><b>HK$ 4,434,584</b></td></tr>
+<tr><td>全市场负债</td><td class="dn">HK$ -1,699,629</td></tr>
+<tr><td>本金投入</td><td>HK$ 2,391,283</td></tr>
+<tr><td>累积盈亏</td><td class="up">+2,340,847 (+30.7%)</td></tr>
+</table>
+</div>
+<div>
+<table class="tbl">
+<tr><td>港股市值</td><td>HK$ 4,048,343</td></tr>
+<tr><td>港股现金</td><td class="up">+686,540</td></tr>
+<tr><td>美股市值</td><td>US$ 381,523</td></tr>
+<tr><td>美股负债</td><td class="dn">US$ -336,544</td></tr>
+<tr><td>浮动盈亏</td><td class="dn">-1,120,434 (-15.44%)</td></tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ===== SECTION 2: SMART MONEY ===== -->
+<div class="section">
+<h2>▍2. 机构资金流与期权情绪解码 (Smart Money Tracking)</h2>
+
+<div class="card">
+<h3>📈 大盘状态（盘中10:20快照）</h3>
+<div class="grid2">
+<div class="kpi"><div class="val up">25,886</div><div class="lbl">恒生指数 +0.88%</div></div>
+<div class="kpi"><div class="val up">4,861</div><div class="lbl">恒生科技 +0.81%</div></div>
+</div>
+<p style="font-size:.8em;color:var(--txt2);margin-top:6px">港股高开后震荡，科网股领涨。市场消化封锁利空后企稳，"买预期卖事实"特征明显。中金建议金字塔式加仓科技板块。</p>
+</div>
+
+<div class="card">
+<h3>💰 核心持仓资金流向（富途大单追踪 · 盘中）</h3>
+<table class="tbl">
+<tr><th>股票</th><th>盘中价</th><th>涨跌</th><th>超大单</th><th>大单净流入</th><th>合计大资金</th><th>信号</th></tr>
+<tr>
+<td><b>小米 01810</b></td><td>30.92</td><td class="up">+0.85%</td>
+<td class="dn">-1,665万</td><td class="up">+2,905万</td><td class="up"><b>+1,240万</b></td>
+<td><span class="tag tag-green">大单接力</span></td>
+</tr>
+<tr>
+<td><b>理想 02015</b></td><td>72.40</td><td class="dn">-1.76%</td>
+<td class="dn">-59万</td><td class="dn">-450万</td><td class="dn"><b>-509万</b></td>
+<td><span class="tag tag-red">资金流出</span></td>
+</tr>
+<tr>
+<td><b>蔚来 09866</b></td><td>51.20</td><td class="dn">-2.29%</td>
+<td>0</td><td class="up">+373万</td><td class="up"><b>+373万</b></td>
+<td><span class="tag tag-purple">背离！价跌资金进</span></td>
+</tr>
+<tr>
+<td><b>美团 03690</b></td><td>84.95</td><td class="dn">-1.74%</td>
+<td class="dn">-2,315万</td><td class="up">+1,115万</td><td class="dn"><b>-1,200万</b></td>
+<td><span class="tag tag-red">超大单撤离</span></td>
+</tr>
+<tr>
+<td><b>金山 03888</b></td><td>23.62</td><td class="up">+5.54%</td>
+<td class="up">+126万</td><td class="up">+800万</td><td class="up"><b>+926万</b></td>
+<td><span class="tag tag-green">量价齐升</span></td>
+</tr>
+</table>
+</div>
+
+<div class="card">
+<h3>📊 期权情绪（5月28日到期）</h3>
+<table class="tbl">
+<tr><th>标的</th><th>ATM Call</th><th>ATM Put</th><th>PCR(量)</th><th>解读</th></tr>
+<tr>
+<td><b>小米 MIU</b></td>
+<td>C30:2.35(3) / C31:1.76(9) / C32:1.33(284) / C33:1.00(71)</td>
+<td>P30:1.22(241) / P31:1.63(5) / P29:0.85(21) / P28:0.58(34)</td>
+<td class="nt"><b>0.82</b></td>
+<td><span class="tag tag-green">偏多</span> C32成交284张领先，看涨力量占优</td>
+</tr>
+<tr>
+<td><b>美团 MET</b></td>
+<td>C85:5.04(70) / C87.5:3.94(112) / C90:2.87(335) / C92.5:2.25(449)</td>
+<td>P85:4.51(85) / P87.5:6.06(30) / P82.5:3.41(50) / P80:2.46(99)</td>
+<td class="up"><b>0.27</b></td>
+<td><span class="tag tag-green">极度看多</span> Call总量966 vs Put总量264，机构押注反弹</td>
+</tr>
+</table>
+<p style="font-size:.8em;color:var(--txt2);margin-top:6px"><b>关键发现</b>：<br>
+<b>小米期权PCR 0.82偏多</b>：C32(行权价32，+3.5%虚值)成交284张最活跃，说明机构押注小米短期反弹至32。与大单净流入+1,240万一致。<br>
+<b>美团期权PCR 0.27极度看多</b>：C90和C92.5最活跃(合计784张)，远超Put。尽管今日股价下跌且超大单流出，但期权市场已在提前布局反弹。<span class="up">期权与现货的背离=潜在Alpha信号</span>。</p>
+</div>
+
+<div class="card">
+<h3>🔍 情绪背离Alpha扫描</h3>
+<table class="tbl">
+<tr><th>股票</th><th>价格</th><th>资金面</th><th>期权面</th><th>Alpha结论</th></tr>
+<tr>
+<td><b>蔚来 09866</b></td>
+<td class="dn">-2.29%</td>
+<td class="up">大单+373万</td>
+<td>无HK期权</td>
+<td><span class="tag tag-purple">价跌资金流入=短期洗盘</span><br><span style="font-size:.7em">昨日+7.5%冲高后自然回落，大单逆势买入说明主力未撤</span></td>
+</tr>
+<tr>
+<td><b>美团 03690</b></td>
+<td class="dn">-1.74%</td>
+<td class="dn">超大单-2315万</td>
+<td class="up"><b>PCR 0.27极多</b></td>
+<td><span class="tag tag-purple">现货卖出+期权看涨=机构换手</span><br><span style="font-size:.7em">超大单撤退但期权买Call疯狂，可能是对冲平仓后重新用期权建多头</span></td>
+</tr>
+<tr>
+<td><b>金山 03888</b></td>
+<td class="up">+5.54%</td>
+<td class="up">大单+926万</td>
+<td>—</td>
+<td><span class="tag tag-green">确认性上涨</span><br><span style="font-size:.7em">量价齐升+资金一致看多，延续昨日逆势流入趋势</span></td>
+</tr>
+<tr>
+<td><b>小米 01810</b></td>
+<td class="up">+0.85%</td>
+<td class="up">大单+1240万</td>
+<td class="up">PCR 0.82偏多</td>
+<td><span class="tag tag-green">三维共振看多</span><br><span style="font-size:.7em">股价涨+资金进+期权看涨，连续两日机构吸筹信号</span></td>
+</tr>
+<tr>
+<td><b>理想 02015</b></td>
+<td class="dn">-1.76%</td>
+<td class="dn">大单-509万</td>
+<td>—</td>
+<td><span class="tag tag-red">一致性看空</span><br><span style="font-size:.7em">价格跌+资金出，高盛3月下调评级影响持续，芯片涨价承压</span></td>
+</tr>
+</table>
+</div>
+</div>
+
+<!-- ===== SECTION 3: FULL PORTFOLIO ===== -->
+<div class="section">
+<h2>▍3. 全持仓盘中扫描（CSV持仓+Futu实时）</h2>
+
+<div class="card">
+<h3>🇭🇰 港股持仓</h3>
+<table class="tbl">
+<tr><th>名称</th><th>代码</th><th>实时价</th><th>今日涨跌</th><th>持仓(CSV)</th><th>成本(CSV)</th><th>浮动盈亏</th><th>信号</th></tr>
+<tr><td><b>小米集团-W</b></td><td>01810</td><td>30.92</td><td class="up">+0.85%</td><td>61,600</td><td>37.424</td><td class="dn">-401,022 (-17.4%)</td><td><span class="tag tag-green">三维看多</span></td></tr>
+<tr><td><b>理想汽车-W</b></td><td>02015</td><td>72.40</td><td class="dn">-1.76%</td><td>11,700</td><td>83.229</td><td class="dn">-126,701 (-13.0%)</td><td><span class="tag tag-red">持续走弱</span></td></tr>
+<tr><td><b>蔚来-SW</b></td><td>09866</td><td>51.20</td><td class="dn">-2.29%</td><td>11,660</td><td>46.041</td><td class="up">+60,175 (+10.1%)</td><td><span class="tag tag-purple">洗盘吸筹</span></td></tr>
+<tr><td><b>美团-W</b></td><td>03690</td><td>84.95</td><td class="dn">-1.74%</td><td>3,274</td><td>113.847</td><td class="dn">-94,559 (-25.4%)</td><td><span class="tag tag-purple">期权背离</span></td></tr>
+<tr><td><b>中国能源建设</b></td><td>03996</td><td>1.28</td><td class="dn">-0.78%</td><td>74,000</td><td>1.396</td><td class="dn">-8,584 (-8.3%)</td><td><span class="tag tag-amber">持有</span></td></tr>
+<tr><td><b>京东集团-SW</b></td><td>09618</td><td>111.90</td><td class="dn">-0.36%</td><td>809</td><td>127.550</td><td class="dn">-12,655 (-12.3%)</td><td><span class="tag tag-amber">观望</span></td></tr>
+<tr><td><b>金山软件</b></td><td>03888</td><td>23.62</td><td class="up">+5.54%</td><td>3,600</td><td>31.445</td><td class="dn">-28,146 (-24.9%)</td><td><span class="tag tag-green">确认上涨</span></td></tr>
+<tr><td><b>赛力斯</b></td><td>09927</td><td>80.55</td><td class="up">+0.06%</td><td>900</td><td>127.006</td><td class="dn">-41,810 (-36.5%)</td><td><span class="tag tag-red">深套</span></td></tr>
+<tr><td>碧桂园</td><td>02007</td><td>0.305</td><td>0.00%</td><td>87,000</td><td>0.742</td><td class="dn">-38,019 (-58.9%)</td><td><span class="tag tag-red">清仓</span></td></tr>
+<tr><td>北京汽车</td><td>01958</td><td>1.53</td><td class="dn">-1.29%</td><td>13,500</td><td>2.107</td><td class="dn">-7,795 (-27.3%)</td><td><span class="tag tag-red">清仓</span></td></tr>
+<tr><td>北大资源</td><td>00618</td><td>—</td><td>—</td><td>67,000</td><td>0.908</td><td class="dn">~-39,000 (-64%)</td><td><span class="tag tag-red">清仓</span></td></tr>
+<tr><td>中国恒大</td><td>03333</td><td>停牌</td><td>—</td><td>51,000</td><td>0.612</td><td class="dn">-22,909 (-73.4%)</td><td><span class="tag tag-red">已废</span></td></tr>
+<tr><td>碧生源/EPRINT/雍禾</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="dn">合计-49,933</td><td><span class="tag tag-red">已废</span></td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>🇺🇸 美股持仓（CSV数据，Futu无美股权限）</h3>
+<table class="tbl">
+<tr><th>名称</th><th>代码</th><th>收盘价</th><th>持仓</th><th>成本</th><th>浮动盈亏</th><th>信号</th></tr>
+<tr><td><b>小牛电动</b></td><td>NIU</td><td>2.88</td><td>81,185</td><td>3.613</td><td class="dn">-59,476 (-20.3%)</td><td><span class="tag tag-amber">等Q1财报</span></td></tr>
+<tr><td><b>蔚来</b></td><td>NIO</td><td>6.50</td><td>21,618</td><td>5.668</td><td class="up">+17,993 (+14.7%)</td><td><span class="tag tag-green">盈利持有</span></td></tr>
+<tr><td>Figma</td><td>FIG</td><td>18.16</td><td>334</td><td>20.311</td><td class="dn">-718 (-10.6%)</td><td><span class="tag tag-amber">观望</span></td></tr>
+<tr><td>FFAI/ELOX</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="dn">合计-17,237</td><td><span class="tag tag-red">已废</span></td></tr>
+</table>
+</div>
+</div>
+
+<!-- ===== SECTION 4: EXECUTION STRATEGY ===== -->
+<div class="section">
+<h2>▍4. 明日量化执行指令 (Execution Strategy)</h2>
+
+<div class="exec exec-p0">
+<div class="pri p0">P0 | 紧急 — 降杠杆保命</div>
+<p style="font-size:.82em"><b>【现货操作】清仓劣质资产</b></p>
+<table class="tbl">
+<tr><th>标的</th><th>操作</th><th>数量</th><th>预计回收</th><th>理由</th></tr>
+<tr><td>碧桂园 02007</td><td class="dn">市价卖出</td><td>87,000股</td><td>~HK$26,500</td><td>债务重组僵尸股</td></tr>
+<tr><td>北京汽车 01958</td><td class="dn">市价卖出</td><td>13,500股</td><td>~HK$20,700</td><td>基本面恶化</td></tr>
+<tr><td>北大资源 00618</td><td class="dn">挂单卖出</td><td>67,000股</td><td>~HK$22,000</td><td>仙股无流动性</td></tr>
+<tr><td>碧生源+EPRINT+雍禾</td><td class="dn">挂单卖出</td><td>全部</td><td>~HK$10,000</td><td>已废资产</td></tr>
+</table>
+<p style="font-size:.78em;color:var(--txt2);margin-top:6px"><b>合计回收≈HK$79,200</b> → 融资余额从-136.8万降至-129.9万 → 安全缓冲从7.86%提升至<span class="up">≈9.5%</span></p>
+</div>
+
+<div class="exec exec-p1">
+<div class="pri p1">P1 | 重要 — 期权对冲策略</div>
+<p style="font-size:.82em"><b>【策略A：小米 Covered Call】</b></p>
+<ul style="font-size:.78em;color:var(--txt2);padding-left:16px">
+<li>标的：小米(01810)持仓61,600股 → 卖出<b>12手 MIU 260528 C33</b> @ 0.94-0.98</li>
+<li>预计收入：<span class="up">HK$56,400-58,800</span>（每手5,000股 × 12手 × 0.94-0.98）</li>
+<li>行权价33港元(+6.7%虚值)，不影响持仓上行至33</li>
+<li>PCR 0.82偏多+大单流入 → 短期超过33概率低，收权利金概率高</li>
+</ul>
+<p style="font-size:.82em;margin-top:10px"><b>【策略B：美团 保护性止损 + 等待反弹】</b></p>
+<ul style="font-size:.78em;color:var(--txt2);padding-left:16px">
+<li>期权PCR 0.27极度看多 → 机构在用Call押注反弹，但超大单仍在撤退</li>
+<li>建议：设<b>82.5港元条件止损单</b>保底，但<b>不主动卖出</b></li>
+<li>若反弹至90+，减持1/3降低深套敞口</li>
+</ul>
+<p style="font-size:.82em;margin-top:10px"><b>【策略C：NIO美股 Covered Call】</b></p>
+<ul style="font-size:.78em;color:var(--txt2);padding-left:16px">
+<li>NIO持仓21,618股（盈利+14.7%）→ 卖出100手 C7.00 5/15 + 50手 C8.00 5/15</li>
+<li>预计净收入：<span class="up">~US$2,500-3,000</span></li>
+<li>买入100手 P5.00 5/15作为灾难保护（如已执行可维持）</li>
+</ul>
+</div>
+
+<div class="exec exec-p2">
+<div class="pri p2">P2 | 中期 — 仓位优化</div>
+<table class="tbl">
+<tr><th>股票</th><th>操作</th><th>逻辑</th></tr>
+<tr><td><b>小米 01810</b></td><td>持有（核心仓）</td><td>三维共振看多，SU7锁单4万+回购支撑，28港元强支撑</td></tr>
+<tr><td><b>蔚来HK 09866</b></td><td>持有</td><td>价跌资金进=洗盘，ES9催化未结束，昨日冲高后自然回落</td></tr>
+<tr><td><b>理想 02015</b></td><td><span class="dn">减持观察</span></td><td>一致性看空信号。若继续跌破70港元，减持3,000股止损</td></tr>
+<tr><td><b>美团 03690</b></td><td>条件止损82.5</td><td>期权极度看多vs现货流出→等待方向确认</td></tr>
+<tr><td><b>金山 03888</b></td><td>持有</td><td>确认性上涨，量价齐升+连续两日资金流入，等待反弹修复</td></tr>
+<tr><td><b>京东 09618</b></td><td>持有观望</td><td>PE 14.6x合理，今日微跌-0.36%，无明显方向</td></tr>
+<tr><td><b>小牛NIU</b></td><td>持有等财报</td><td>Q1销量+29%，5月中旬Q1财报为催化窗口</td></tr>
+<tr><td><b>NIO美股</b></td><td>执行Covered Call</td><td>盈利+14.7%，用期权锁定部分收益</td></tr>
+</table>
+</div>
+</div>
+
+<!-- ===== SECTION 5: CHARTS ===== -->
+<div class="section">
+<h2>▍5. 可视化看板</h2>
+<div class="card">
+<h3>今日涨跌 vs 大资金流向</h3>
+<canvas id="barChart" width="400" height="250"></canvas>
+</div>
+<div class="card">
+<h3>持仓浮动盈亏分布</h3>
+<canvas id="plChart" width="400" height="250"></canvas>
+</div>
+</div>
+
+<!-- ===== RISK SCENARIO ===== -->
+<div class="section">
+<h2>▍6. 风险情景矩阵</h2>
+<div class="card">
+<table class="tbl">
+<tr><th>情景</th><th>概率</th><th>触发</th><th>组合影响</th><th>应对</th></tr>
+<tr>
+<td><span class="tag tag-red">黑天鹅</span></td><td>15%</td>
+<td>霍尔木兹军事冲突升级，油价>$120</td>
+<td class="dn">持仓-10~15%<br><b>触发Margin Call</b></td>
+<td>P0立即全部执行+减持理想/美团</td>
+</tr>
+<tr>
+<td><span class="tag tag-amber">基准</span></td><td>55%</td>
+<td>封锁持续但不升级，油价$95-110</td>
+<td class="dn">震荡-2~5%<br>汽车股相对强势</td>
+<td>执行P0+P1，清仓劣质+期权对冲</td>
+</tr>
+<tr>
+<td><span class="tag tag-green">乐观</span></td><td>30%</td>
+<td>美伊重启谈判/停火，油价回$85-95</td>
+<td class="up">反弹+3~5%</td>
+<td>Covered Call收权利金，持仓不动</td>
+</tr>
+</table>
+</div>
+</div>
+
+<div class="footer">
+<p>⚠️ 本报告基于富途OpenAPI实时数据 + WebSearch公开信息 + 雪球持仓组合10.csv，不构成投资建议。</p>
+<p>生成时间：2026-04-14 10:25 盘中 | touziModle Phase1→2→3 全链路执行</p>
+</div>
+
+<script>
+new Chart(document.getElementById('barChart'),{
+type:'bar',
+data:{
+labels:['小米','理想','蔚来','美团','金山'],
+datasets:[
+{label:'涨跌幅%',data:[0.85,-1.76,-2.29,-1.74,5.54],
+backgroundColor:ctx=>ctx.raw>=0?'#10b981':'#ef4444',yAxisID:'y'},
+{label:'大资金净流入(万)',data:[1240,-509,373,-1200,926],
+backgroundColor:'#3b82f640',borderColor:'#3b82f6',borderWidth:1,yAxisID:'y1'}
+]
+},
+options:{
+responsive:true,
+scales:{
+y:{position:'left',ticks:{color:'#e5e7eb'},grid:{color:'#1f293780'},title:{display:true,text:'涨跌%',color:'#9ca3af'}},
+y1:{position:'right',ticks:{color:'#3b82f6'},grid:{drawOnChartArea:false},title:{display:true,text:'净流入(万)',color:'#3b82f6'}},
+x:{ticks:{color:'#e5e7eb'},grid:{color:'#1f293740'}}
+},
+plugins:{legend:{labels:{color:'#e5e7eb'}}}
+}
+});
+
+new Chart(document.getElementById('plChart'),{
+type:'bar',
+data:{
+labels:['小米','理想','蔚来HK','美团','金山','赛力斯','京东','中能建','蔚来US','小牛NIU','碧桂园','其他废仓'],
+datasets:[{
+label:'浮动盈亏%',
+data:[-17.4,-13.0,10.1,-25.4,-24.9,-36.5,-12.3,-8.3,14.7,-20.3,-58.9,-75],
+backgroundColor:ctx=>ctx.raw>=0?'#10b981':'#ef4444',
+borderRadius:4
+}]
+},
+options:{
+indexAxis:'y',
+responsive:true,
+scales:{
+x:{ticks:{color:'#e5e7eb',callback:v=>v+'%'},grid:{color:'#1f293780'}},
+y:{ticks:{color:'#e5e7eb',font:{size:10}},grid:{color:'#1f293740'}}
+},
+plugins:{legend:{display:false}}
+}
+});
+</script>
+
+</body>
+</html>
